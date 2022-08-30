@@ -1,0 +1,15 @@
+server:
+  port: 8001
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/internshipdata
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQL82Dialect
+      format_sql: false
+    open-in-view: false
