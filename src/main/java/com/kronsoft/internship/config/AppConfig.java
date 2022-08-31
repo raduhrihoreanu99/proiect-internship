@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kronsoft.internship.constants.FilterConstants;
 
@@ -36,6 +38,16 @@ public class AppConfig {
 	    transactionManagerCustomizers.ifAvailable((customizers) -> customizers.customize(transactionManager));
 	 
 	    return transactionManager;
+	  }
+	  
+	  @Bean
+	  public WebMvcConfigurer corsConfigurer() {
+		  return new WebMvcConfigurer() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				}
+			};
 	  }
 	  
 }
