@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Filter;
 
@@ -34,14 +36,18 @@ public class Patient implements Serializable {
 	@Column(name = "PATIENT_ID")
 	private Long patientId;
 
+	@NotBlank(message = "First name is mandatory!")
 	@Column(name = "FIRST_NAME", length = 20, nullable = false)
 	private String firstName;
-
+	
+	@NotBlank(message = "Last name is mandatory!")
 	@Column(name = "LAST_NAME", length = 40, nullable = false)
 	private String lastName;
-
+	
+	@NotNull(message = "Birthdate is mandatory!")
 	private LocalDate birthdate;
 
+	@NotBlank(message = "CNP is mandatory!")
 	@Column(nullable = false, length = 13, unique = true)
 	private String cnp;
 

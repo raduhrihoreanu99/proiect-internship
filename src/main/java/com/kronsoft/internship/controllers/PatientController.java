@@ -3,6 +3,8 @@ package com.kronsoft.internship.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,7 +50,7 @@ public class PatientController {
 	
 	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Patient createPatient(@RequestBody Patient patient) {
+	public Patient createPatient(@Valid @RequestBody Patient patient) {
 		return patientService.persistPatient(patient);
 	}
 	
