@@ -3,8 +3,11 @@ package com.kronsoft.internship.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,9 +27,21 @@ import com.kronsoft.internship.service.PatientService;
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
+	private static Logger logger = LoggerFactory.getLogger(PatientController.class);
 	
 	@Autowired
 	private PatientService patientService; 
+	
+	@PostConstruct
+	private void test() {
+		logger.info("----------------CONTROLLER------------------------");
+		logger.debug("debug");
+		logger.info("info");
+		logger.error("error");
+		logger.warn("warn");
+		logger.trace("trace");
+		logger.info("----------------------------------------");
+	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PatientDto> getAllPatients() {

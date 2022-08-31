@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Filter;
 
+import com.kronsoft.intenrship.validators.CnpConstraint;
 import com.kronsoft.internship.constants.FilterConstants;
 
 @Entity
@@ -47,6 +48,7 @@ public class Patient implements Serializable {
 	@NotNull(message = "Birthdate is mandatory!")
 	private LocalDate birthdate;
 
+	@CnpConstraint
 	@NotBlank(message = "CNP is mandatory!")
 	@Column(nullable = false, length = 13, unique = true)
 	private String cnp;

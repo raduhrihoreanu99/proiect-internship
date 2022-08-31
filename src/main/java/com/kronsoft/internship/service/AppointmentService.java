@@ -29,13 +29,13 @@ public class AppointmentService {
 	
 	public void loadAndDisplayAppointments() {
 		List<Appointment> appointments = appointmentRepository.findAll();
-		System.out.println("--- APPOINTMENTS ---");
-		System.out.println(appointments);
+//		System.out.println("--- APPOINTMENTS ---");
+//		System.out.println(appointments);
 		
 		Session session = entityManager.unwrap(Session.class);
 		session.enableFilter(FilterConstants.NOT_EXPIRED_APPOINTMENTS);
 		appointments = appointmentRepository.findAll();
-		System.out.println("Non expired filters size: " + appointments.size());
+//		System.out.println("Non expired filters size: " + appointments.size());
 		session.disableFilter(FilterConstants.NOT_EXPIRED_APPOINTMENTS);
 	}
 
@@ -44,8 +44,8 @@ public class AppointmentService {
 		if (appointments.isEmpty()) {
 			appointments.add(createAppointment(patient));
 		}
-		System.out.println("Appointments for Patient: " + patient);
-		System.out.println(appointments);
+//		System.out.println("Appointments for Patient: " + patient);
+//		System.out.println(appointments);
 	}
 
 	public void createAppointmentForPatient(Patient patient) {

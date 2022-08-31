@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,7 @@ import com.kronsoft.internship.entities.Patient;
 // Atentie, pentru ca Spring sa ia in considerare annotarea @Transactional, metoda respectiva trebuie chemata dintr-o alta clasa Spring (ex: clasa cu metoda main, un alt service, etc.)
 @Transactional 
 public class PatientService {
+	private static Logger logger = LoggerFactory.getLogger(PatientService.class);
 
 	// Constanta folosita pentru generarea aleatorie de valori
 	private static final Random RANDOM = new Random();
@@ -34,12 +37,20 @@ public class PatientService {
 	private PatientRepository patientRepository;
 	
 	public void loadAndDisplayPatients() {
+		logger.info("-------------------SERVICE---------------------");
+		logger.debug("debug");
+		logger.info("info");
+		logger.error("error");
+		logger.warn("warn");
+		logger.trace("trace");
+		logger.info("----------------------------------------");
+		
 		// daca nu exista niciun pacient, creem, altfel ii aducem pe toti din DB
 		List<Patient> patients = patientRepository.count() == 0 ? createPatients(10)
 				: patientRepository.findAll();
-		System.out.println("--- PATIENT LIST ---");
-		System.out.println(patients);
-		System.out.println("Patients over 18: " +patients.size());
+//		System.out.println("--- PATIENT LIST ---");
+//		System.out.println(patients);
+//		System.out.println("Patients over 18: " +patients.size());
 		
 		for (Patient patient : patients) {
 			if (!appointmentService.existsAppointmentForPatient(patient)) {
