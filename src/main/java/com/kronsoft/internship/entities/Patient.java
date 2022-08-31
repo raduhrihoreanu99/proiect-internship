@@ -14,10 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Filter;
 
 import com.kronsoft.internship.constants.FilterConstants;
+import com.kronsoft.internship.validators.CnpConstraint;
 
 @Entity
 @Table(name = "patients")
@@ -40,8 +43,11 @@ public class Patient implements Serializable {
 	@Column(name = "LAST_NAME", length = 40, nullable = false)
 	private String lastName;
 
+	@NotNull(message = "Birthdate cannot be null!")
 	private LocalDate birthdate;
-
+	
+	@CnpConstraint
+	@NotBlank(message = "CNP cannot be blank!")
 	@Column(nullable = false, length = 13, unique = true)
 	private String cnp;
 

@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/internshipdata
     username: postgres
-    password: admin
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,3 +13,8 @@ spring:
       dialect: org.hibernate.dialect.PostgreSQL82Dialect
       format_sql: false
     open-in-view: false
+
+logging:
+  level:
+    '[com.kronsoft.internship.service]': DEBUG
+    '[com.kronsoft.internship.controllers]': INFO

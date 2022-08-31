@@ -3,6 +3,11 @@ package com.kronsoft.internship.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,9 +27,21 @@ import com.kronsoft.internship.service.PatientService;
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
+	private static Logger logger = LoggerFactory.getLogger(PatientController.class);
 	
 	@Autowired
 	private PatientService patientService; 
+	
+	@PostConstruct
+	private void test() {
+		logger.info("-----------------PATIENT CONTROLLER-------------------------");
+		logger.info("Aceasta este o informatie!");
+		logger.warn("Acesta este un avertisment!");
+		logger.error("Aceasta este o eroare!");
+		
+		logger.trace("TRACE MESSAGE");
+		logger.debug("DEBUG MESSAGE");
+	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PatientDto> getAllPatients() {
@@ -48,7 +65,7 @@ public class PatientController {
 	
 	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Patient createPatient(@RequestBody Patient patient) {
+	public Patient createPatient(@Valid @RequestBody Patient patient) {
 		return patientService.persistPatient(patient);
 	}
 	
