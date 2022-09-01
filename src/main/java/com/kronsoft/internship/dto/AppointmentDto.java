@@ -8,7 +8,6 @@ public class AppointmentDto {
 	private Long appointmentId;
 	private AppointmentStatus appointmentStatus;
 	private LocalDateTime startDate;
-	private PatientDto patient;
 	
 	public Long getAppointmentId() {
 		return appointmentId;
@@ -28,12 +27,4 @@ public class AppointmentDto {
 	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
-	public PatientDto getPatient() {
-		return patient;
-	}
-	public void setPatient(PatientDto patient) {
-		this.patient = patient;
-	}
-	
-	
 }
