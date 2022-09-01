@@ -1,5 +1,10 @@
 server:
   port: 8001
+#  servlet:
+#    session:
+#      cookie:
+#        http-only: true
+#        secure: true
 
 spring:
   datasource:
