@@ -1,6 +1,5 @@
 package com.kronsoft.internship.entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -22,12 +21,7 @@ import com.kronsoft.internship.constants.FilterConstants;
 @Entity
 @Table(name = "appointments")
 @Filter(name = FilterConstants.NOT_EXPIRED_APPOINTMENTS)
-public class Appointment implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 578159756497042876L;
+public class Appointment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

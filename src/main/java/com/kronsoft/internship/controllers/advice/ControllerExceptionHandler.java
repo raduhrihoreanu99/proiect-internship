@@ -7,12 +7,19 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.kronsoft.internship.exceptions.AccountAlreadyExistException;
+
 @ControllerAdvice
 public class ControllerExceptionHandler {
 	
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<String> dataIntegrityException(DataIntegrityViolationException e) {
 		return new ResponseEntity<>("Data integrity violation! Some required property may be missing", HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(AccountAlreadyExistException.class)
+	public ResponseEntity<String> dataIntegrityException(AccountAlreadyExistException e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
