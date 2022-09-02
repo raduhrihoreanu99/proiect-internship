@@ -1,6 +1,5 @@
 package com.kronsoft.internship.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -25,12 +24,7 @@ import com.kronsoft.internship.validators.CnpConstraint;
 @Entity
 @Table(name = "patients")
 @Filter(name = FilterConstants.PATIENTS_OVER_EIGHTEEN)
-public class Patient implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3582902104490991385L;
+public class Patient {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
