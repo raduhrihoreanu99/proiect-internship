@@ -28,7 +28,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 	
 	List<Patient> findByLastNameLike(String lastName);
 	
-	Optional<Patient> findByCnp(@Param("cnp") String cnp);
+	Patient findByCnp(@Param("cnp") String cnp);
 	
 	boolean existsByCnp(String cnp);
 	
