@@ -20,7 +20,7 @@ public class PatientServiceTest {
 
   public static final String HRIHOREANU = "Hrihoreanu";
   public static final String RADU = "Radu";
-  public static final String CNP = "1990824080052";
+  public static final String CNP = "7990824080000";
   public static final String DAN = "Dan";
   public static final String SELARU = "Selaru";
 
