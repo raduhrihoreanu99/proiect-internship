@@ -85,6 +85,10 @@ public class PatientService {
 			return patientRepository.findByLastNameLike(lastName);
 		}
 	}
+
+	public Patient getPatientByCnp(String cnp) {
+		return patientRepository.findByCnp(cnp);
+	}
 	
 	// Creaza n patienti, in functie de argumentul primit
 	private List<Patient> createPatients(int nr) {
