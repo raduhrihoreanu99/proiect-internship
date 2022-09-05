@@ -12,7 +12,7 @@ import com.kronsoft.internship.exceptions.AccountAlreadyExistException;
 
 @Service
 public class AccountService {
-	private static Logger logger = LoggerFactory.getLogger(AccountService.class);
+	private static final Logger logger = LoggerFactory.getLogger(AccountService.class);
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;

@@ -47,12 +47,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeHttpRequests()
+		    .antMatchers("/account/register").permitAll()
 			.antMatchers("/patients/**", "/appointment/**", "/account/**").authenticated()
 		.and().formLogin()
-			.defaultSuccessUrl("/patients")
-			.failureForwardUrl("/login?error")
+			.defaultSuccessUrl("/swagger-ui/index.html")
 			.failureHandler(new CustomAuthneticationFailureHandler())
-		.and().logout().logoutSuccessUrl("/").deleteCookies("JSESSIONID")
+		.and().logout()
+			.logoutSuccessUrl("/")
+			.deleteCookies("JSESSIONID")
 			.clearAuthentication(true);
 	}
 	

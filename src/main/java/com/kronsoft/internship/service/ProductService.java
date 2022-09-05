@@ -1,7 +1,6 @@
 package com.kronsoft.internship.service;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -34,7 +33,7 @@ public class ProductService {
 				CsvMapper mapper = new CsvMapper();
 				MappingIterator<Product> iterator = mapper.readerFor(Product.class).with(schema)
 						.readValues(resource.getInputStream());
-				List<Product> products = productRepository.saveAll(iterator.readAll());
+				productRepository.saveAll(iterator.readAll());
 			}
 		} catch (IOException e) {
 			logger.error("An error occurred while populating products.", e);

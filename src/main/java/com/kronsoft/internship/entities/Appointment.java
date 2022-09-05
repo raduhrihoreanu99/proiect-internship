@@ -24,7 +24,7 @@ import com.kronsoft.internship.constants.FilterConstants;
 public class Appointment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "APPOINTMENT_ID")
 	private Long appointmentId;
 

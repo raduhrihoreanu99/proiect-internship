@@ -18,8 +18,12 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Filter;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.kronsoft.internship.constants.FilterConstants;
 import com.kronsoft.internship.validators.CnpConstraint;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "patients")
@@ -27,7 +31,7 @@ import com.kronsoft.internship.validators.CnpConstraint;
 public class Patient {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PATIENT_ID")
 	private Long patientId;
 
@@ -37,6 +41,8 @@ public class Patient {
 	@Column(name = "LAST_NAME", length = 40, nullable = false)
 	private String lastName;
 
+	@JsonFormat(pattern = "yyyy-MM-dd", shape = Shape.STRING)
+	@ApiModelProperty(required = true, example = "2022-09-02")
 	@NotNull(message = "Birthdate cannot be null!")
 	private LocalDate birthdate;
 	

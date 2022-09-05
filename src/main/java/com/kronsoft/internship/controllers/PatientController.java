@@ -3,7 +3,6 @@ package com.kronsoft.internship.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -27,21 +26,10 @@ import com.kronsoft.internship.service.PatientService;
 @RestController
 @RequestMapping("/patients")
 public class PatientController {
-	private static Logger logger = LoggerFactory.getLogger(PatientController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PatientController.class);
 	
 	@Autowired
 	private PatientService patientService; 
-	
-	@PostConstruct
-	private void test() {
-		logger.info("-----------------PATIENT CONTROLLER-------------------------");
-		logger.info("Aceasta este o informatie!");
-		logger.warn("Acesta este un avertisment!");
-		logger.error("Aceasta este o eroare!");
-		
-		logger.trace("TRACE MESSAGE");
-		logger.debug("DEBUG MESSAGE");
-	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<PatientDto> getAllPatients() {
@@ -66,6 +54,7 @@ public class PatientController {
 	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public Patient createPatient(@Valid @RequestBody Patient patient) {
+		logger.info("[REST] POST call to /patients/create");
 		return patientService.persistPatient(patient);
 	}
 	

@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,7 @@ import com.kronsoft.internship.entities.Patient;
 // Atentie, pentru ca Spring sa ia in considerare annotarea @Transactional, metoda respectiva trebuie chemata dintr-o alta clasa Spring (ex: clasa cu metoda main, un alt service, etc.)
 @Transactional 
 public class PatientService {
-	private static Logger logger = LoggerFactory.getLogger(PatientService.class);
+	private static final Logger logger = LoggerFactory.getLogger(PatientService.class);
 
 	// Constanta folosita pentru generarea aleatorie de valori
 	private static final Random RANDOM = new Random();
@@ -38,24 +36,13 @@ public class PatientService {
 	@Autowired
 	private PatientRepository patientRepository;
 	
-	@PostConstruct
-	private void test() {
-		logger.info("-----------------PATIENT SERVICE-------------------------");
-		logger.info("Aceasta este o informatie!");
-		logger.warn("Acesta este un avertisment!");
-		logger.error("Aceasta este o eroare!");
-		
-		logger.trace("TRACE MESSAGE");
-		logger.debug("DEBUG MESSAGE");
-	}
-	
 	public void loadAndDisplayPatients() {
 		// daca nu exista niciun pacient, creem, altfel ii aducem pe toti din DB
 		List<Patient> patients = patientRepository.count() == 0 ? createPatients(10)
 				: patientRepository.findAll();
-		System.out.println("--- PATIENT LIST ---");
-		System.out.println(patients);
-		System.out.println("Patients over 18: " +patients.size());
+		logger.info("--- PATIENT LIST ---");
+		logger.info("{}",patients);
+		logger.info("Patients over 18: " +patients.size());
 		
 		for (Patient patient : patients) {
 			if (!appointmentService.existsAppointmentForPatient(patient)) {
@@ -72,7 +59,7 @@ public class PatientService {
 		* ceea ce ne permite sa evitam o recursivitate. (appointment.patient nu este apelat nicaieri, nefacand parte nici din metoda toString)
 		* Alternativa: relatie unidirectionala
 		 */
-		patients.forEach(patient -> System.out.println(patient.getAppointments()));
+		patients.forEach(patient -> logger.info("{}", patient.getAppointments()));
 	}
 	
 	public List<Patient> getAllPatients() {

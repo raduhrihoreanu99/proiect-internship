@@ -28,6 +28,7 @@ import com.kronsoft.internship.constants.FilterConstants;
 @EnableTransactionManagement // activeaza managementul de tranzactii (vezi @Transactional)
 public class AppConfig {
 	
+//    Enable Hibernate Filter PATIENTS_OVER_EIGHTEEN globally	
 	  @Bean
 	  @ConditionalOnMissingBean
 	  public PlatformTransactionManager transactionManager(
@@ -45,7 +46,7 @@ public class AppConfig {
 	 
 	    return transactionManager;
 	  }
-	  
+//	  CORS config for project without Spring Security	  
 //	  @Bean
 //	  public WebMvcConfigurer corsConfigurer() {
 //		 return new WebMvcConfigurer() {
@@ -56,6 +57,7 @@ public class AppConfig {
 //		 };
 //	  }
 	  
+//	  CORS config for project with Spring Security
 	  @Bean
 	  public FilterRegistrationBean<CorsFilter> corsFilterBean() {
 			UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
