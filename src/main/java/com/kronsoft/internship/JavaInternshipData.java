@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-@EnableWebMvc
 public class JavaInternshipData {
 
 	@Autowired
